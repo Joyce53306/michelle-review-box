@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michelle's Review Box ✨</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="data.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ── 頂部 ── -->
+  <header class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">📦</span>
+      <div>
+        <h1 class="brand-name">Michelle's Review Box</h1>
+        <p class="brand-sub">國中五科 AI 學習夥伴</p>
+      </div>
+    </div>
+    <button class="stat-toggle" onclick="toggleRecord()" aria-label="學習紀錄">
+      <span id="statBadge">0</span> 次練習
+    </button>
+  </header>
+
+  <!-- ── 學習紀錄 ── -->
+  <section class="record-panel" id="recordPanel" aria-hidden="true">
+    <div class="stats-grid">
+      <div class="stat-chip"><span class="sc-num" id="sTotal">0</span><span class="sc-lbl">總計</span></div>
+      <div class="stat-chip"><span class="sc-num" id="sZh">0</span><span class="sc-lbl">國文</span></div>
+      <div class="stat-chip"><span class="sc-num" id="sEn">0</span><span class="sc-lbl">英文</span></div>
+      <div class="stat-chip"><span class="sc-num" id="sSs">0</span><span class="sc-lbl">社會</span></div>
+      <div class="stat-chip"><span class="sc-num" id="sMath">0</span><span class="sc-lbl">數學</span></div>
+      <div class="stat-chip"><span class="sc-num" id="sSci">0</span><span class="sc-lbl">自然</span></div>
+    </div>
+    <div class="rec-list" id="recList"><p class="rec-empty">還沒有記錄，快開始練習吧！</p></div>
+    <button class="rec-clear" onclick="clearRecords()">清除記錄</button>
+  </section>
+
+  <!-- ── Step 1：科目 ── -->
+  <div class="step-label">科目</div>
+  <div class="subject-tabs" id="subjectTabs"></div>
+
+  <!-- ── Step 2：年級 ── -->
+  <div class="step-label">年級</div>
+  <div class="grade-tabs">
+    <button class="g-tab active" id="g-g7" onclick="setGrade('g7')">七年級</button>
+    <button class="g-tab" id="g-g8" onclick="setGrade('g8')">八年級</button>
+    <button class="g-tab" id="g-g9" onclick="setGrade('g9')">九年級</button>
+  </div>
+
+  <!-- ── Step 3：單元 ── -->
+  <div class="step-label">單元主題</div>
+  <div class="section-area" id="sectionArea"></div>
+
+  <!-- ── Step 4：主題 ── -->
+  <div class="step-label">細項主題</div>
+  <div class="row-group">
+    <select id="topicSelect" class="topic-sel"></select>
+  </div>
+
+  <!-- ── Step 5：模式 ── -->
+  <div class="step-label">練習模式</div>
+  <div class="mode-row">
+    <button class="mode-btn active" id="mode-quiz"    onclick="setMode('quiz')">📝 出題測驗</button>
+    <button class="mode-btn"        id="mode-explain" onclick="setMode('explain')">💡 觀念解釋</button>
+    <button class="mode-btn"        id="mode-grade"   onclick="setMode('grade')">✅ 批改作答</button>
+  </div>
+
+  <!-- ── 題型（出題模式） ── -->
+  <div id="qtypeSection">
+    <div class="step-label">題型</div>
+    <div class="chip-grid" id="qtypeGrid"></div>
+  </div>
+
+  <!-- ── 解釋風格（解釋模式） ── -->
+  <div id="explainSection" style="display:none">
+    <div class="step-label">解釋風格</div>
+    <div class="chip-grid" id="explainGrid"></div>
+  </div>
+
+  <!-- ── 輸入區 ── -->
+  <textarea id="userInput" class="input-area" placeholder="（可選填）補充說明，或貼上你的作答內容"></textarea>
+  <p class="hint" id="inputHint">選好題型後按「開始」，AI 老師幫你出題</p>
+
+  <!-- ── 動作 ── -->
+  <div class="action-row">
+    <button class="go-btn" id="goBtn" onclick="startAI()">開始練習 ▶</button>
+    <button class="clear-btn" onclick="clearOutput()">清除</button>
+  </div>
+
+  <!-- ── 圖表 ── -->
+  <div class="chart-wrap" id="chartWrap"><canvas id="myChart"></canvas></div>
+
+  <!-- ── AI 回應 ── -->
+  <div class="response-box" id="responseBox"></div>
+
+</div><!-- /app -->
+
+<script src="app.js"></script>
+</body>
+</html>

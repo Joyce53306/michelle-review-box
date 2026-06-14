@@ -1,0 +1,214 @@
+/* ===== Michelle's Review Box · style.css ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  background: #f2f1ee;
+  min-height: 100vh;
+  padding: 1.5rem 1rem 4rem;
+  color: #1a1a1a;
+}
+
+.app { max-width: 680px; margin: 0 auto; }
+
+/* ── 頂部 ── */
+.top-bar {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 1.5rem;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-icon { font-size: 30px; }
+.brand-name { font-size: 19px; font-weight: 600; }
+.brand-sub { font-size: 11px; color: #999; margin-top: 1px; }
+.stat-toggle {
+  font-size: 12px; padding: 6px 14px;
+  border: 1px solid #ddd; border-radius: 20px;
+  background: #fff; cursor: pointer; color: #555;
+}
+.stat-toggle:hover { background: #f5f5f5; }
+#statBadge {
+  display: inline-block; background: #534AB7; color: #fff;
+  font-size: 11px; border-radius: 10px;
+  padding: 0 6px; margin-right: 3px;
+}
+
+/* ── 學習紀錄 ── */
+.record-panel {
+  display: none; background: #fff;
+  border: 1px solid #e5e5e5; border-radius: var(--radius-lg);
+  padding: 1.25rem; margin-bottom: 1.25rem; box-shadow: var(--shadow);
+}
+.record-panel.open { display: block; }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(6,1fr);
+  gap: 6px; margin-bottom: 1rem;
+}
+.stat-chip {
+  background: #f7f6f4; border-radius: var(--radius-sm);
+  padding: 8px 4px; text-align: center;
+}
+.sc-num { display: block; font-size: 20px; font-weight: 600; }
+.sc-lbl { display: block; font-size: 10px; color: #999; margin-top: 1px; }
+.rec-list { margin-bottom: 10px; }
+.rec-item {
+  font-size: 12px; color: #666;
+  padding: 7px 0; border-bottom: 1px solid #f0f0f0; line-height: 1.5;
+}
+.rec-item:last-child { border-bottom: none; }
+.rec-badge {
+  display: inline-block; font-size: 10px;
+  padding: 1px 8px; border-radius: 10px; margin-right: 5px;
+}
+.rec-empty { font-size: 12px; color: #bbb; }
+.rec-clear {
+  font-size: 11px; padding: 4px 12px;
+  border: 1px solid #ddd; border-radius: 20px;
+  background: transparent; cursor: pointer; color: #aaa;
+}
+.rec-clear:hover { color: #e24b4a; border-color: #e24b4a; }
+
+/* ── Step 標籤 ── */
+.step-label {
+  font-size: 11px; font-weight: 600; color: #999;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin: 1.1rem 0 0.4rem;
+}
+
+/* ── 科目 Tabs ── */
+.subject-tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 0.25rem; }
+.sub-tab {
+  flex: 1; min-width: 80px; padding: 9px 6px;
+  text-align: center; font-size: 13px; font-weight: 500;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-md);
+  cursor: pointer; background: #fff; color: #888;
+  transition: all 0.15s;
+}
+.sub-tab:hover { background: #f5f5f5; }
+.sub-tab.active { font-weight: 600; }
+
+/* ── 年級 Tabs ── */
+.grade-tabs { display: flex; gap: 7px; margin-bottom: 0.25rem; }
+.g-tab {
+  flex: 1; padding: 7px 0; text-align: center;
+  font-size: 13px; border: 1px solid #e0e0e0;
+  border-radius: var(--radius-sm); cursor: pointer;
+  background: #fff; color: #888; transition: all 0.15s;
+}
+.g-tab:hover { background: #f5f5f5; }
+.g-tab.active {
+  background: #1a1a1a; border-color: #1a1a1a;
+  color: #fff; font-weight: 500;
+}
+
+/* ── 單元區塊 ── */
+.section-area { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 0.25rem; }
+.sec-chip {
+  padding: 5px 12px; font-size: 12px;
+  border: 1px solid #e0e0e0; border-radius: 20px;
+  cursor: pointer; background: #fff; color: #666;
+  transition: all 0.15s; white-space: nowrap;
+}
+.sec-chip:hover { background: #f5f5f5; }
+.sec-chip.active { color: #fff; border-color: transparent; font-weight: 500; }
+
+/* ── 主題選單 ── */
+.row-group { margin-bottom: 0.25rem; }
+.topic-sel {
+  width: 100%; font-size: 13px; padding: 8px 12px;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-md);
+  background: #fff; color: #1a1a1a; cursor: pointer;
+}
+
+/* ── 模式按鈕 ── */
+.mode-row { display: flex; gap: 7px; margin-bottom: 0.25rem; }
+.mode-btn {
+  flex: 1; padding: 8px 4px; font-size: 12px;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-sm);
+  cursor: pointer; background: #fff; color: #888;
+  transition: all 0.15s;
+}
+.mode-btn:hover { background: #f5f5f5; }
+.mode-btn.active {
+  background: #f7f6f4; border-color: #bbb;
+  color: #1a1a1a; font-weight: 500;
+}
+
+/* ── Chip 格線（題型/風格）── */
+.chip-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 6px; margin-bottom: 0.25rem;
+}
+.chip {
+  padding: 7px 4px; font-size: 11px;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-sm);
+  cursor: pointer; background: #fff; color: #888;
+  text-align: center; transition: all 0.15s;
+}
+.chip:hover { background: #f5f5f5; }
+.chip.active {
+  background: #f7f6f4; border-color: #bbb;
+  color: #1a1a1a; font-weight: 500;
+}
+
+/* ── 輸入框 ── */
+.input-area {
+  width: 100%; min-height: 75px;
+  padding: 10px 12px; font-size: 14px;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-md);
+  background: #fff; color: #1a1a1a;
+  resize: vertical; line-height: 1.7;
+  font-family: inherit; margin-top: 0.8rem; margin-bottom: 4px;
+}
+.input-area:focus { outline: none; border-color: #aaa; }
+.hint { font-size: 11px; color: #bbb; margin-bottom: 10px; }
+
+/* ── 動作按鈕 ── */
+.action-row { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.go-btn {
+  flex: 2; padding: 12px; font-size: 15px; font-weight: 600;
+  border: none; border-radius: var(--radius-md);
+  cursor: pointer; color: #fff; background: #534AB7;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.go-btn:hover { opacity: 0.88; }
+.go-btn:active { transform: scale(0.98); }
+.go-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.clear-btn {
+  flex: 1; padding: 12px; font-size: 13px;
+  border: 1px solid #e0e0e0; border-radius: var(--radius-md);
+  cursor: pointer; background: #fff; color: #888;
+}
+.clear-btn:hover { background: #f5f5f5; }
+
+/* ── 圖表 ── */
+.chart-wrap {
+  display: none; background: #fff;
+  border: 1px solid #e5e5e5; border-radius: var(--radius-lg);
+  padding: 1rem; margin-bottom: 1rem; box-shadow: var(--shadow);
+}
+.chart-wrap.show { display: block; }
+
+/* ── AI 回應 ── */
+.response-box {
+  display: none; background: #fff;
+  border: 1px solid #e5e5e5; border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem; font-size: 14px; line-height: 1.9;
+  white-space: pre-wrap; box-shadow: var(--shadow);
+}
+.response-box.show { display: block; }
+.loading-dots { color: #bbb; font-size: 13px; }
+
+/* ── 手機 ── */
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(3,1fr); }
+  .chip-grid  { grid-template-columns: repeat(2,1fr); }
+  .brand-name { font-size: 16px; }
+  .subject-tabs .sub-tab { font-size: 12px; padding: 7px 4px; }
+}
